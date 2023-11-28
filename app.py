@@ -1,6 +1,7 @@
 from lib.database_connection import DatabaseConnection
 from lib.artist_repository import ArtistRepository
 from lib.album_repository import AlbumRepository
+from lib.album import Album
 
 
 # Connect to the database
@@ -24,4 +25,18 @@ albums = album_repository.all()
 
 # List them out
 for album in albums:
+    print(album)
+
+found_album = album_repository.find(1)
+print(f"Found: {found_album}")
+
+new_album = Album(None, 'Arrival', 1976, 2)
+album_repository.create(new_album)
+all_albums = album_repository.all()
+for album in all_albums:
+    print(album)
+
+album_repository.delete(1)
+reduced_albums = album_repository.all()
+for album in reduced_albums:
     print(album)
